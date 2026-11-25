@@ -1,0 +1,101 @@
+---
+// Welcome to Astro! Everything between these triple-dash code fences
+// is your "component frontmatter". It never runs in the browser.
+console.log("This runs in your terminal, not the browser!");
+
+// Astro will bundle and optimize this CSS for you automatically
+// This also works for preprocessor files like .scss, .styl, etc.
+import "../styles/page.css";
+
+import { Image } from "astro:assets";
+import cat1 from "../images/cats/cat-1.jpg";
+import cat2 from "../images/cats/cat-2.jpg";
+import cat3 from "../images/cats/cat-3.jpg";
+import cat4 from "../images/cats/cat-4.jpg";
+import cat5 from "../images/cats/cat-5.jpg";
+import cat6 from "../images/cats/cat-6.jpg";
+import cat7 from "../images/cats/cat-7.jpg";
+import cat8 from "../images/cats/cat-8.jpg";
+import cat9 from "../images/cats/cat-9.jpg";
+import cat10 from "../images/cats/cat-10.jpg";
+
+const cats = [
+    { src: cat1, alt: "Een kat met een autoriem om" },
+    { src: cat2, alt: "Een kat luchtballon" },
+    { src: cat3, alt: "twee katten maar het zijn pins op een kaart" },
+    { src: cat4, alt: "Een kat die zegt ay cabron" },
+    {
+        src: cat5,
+        alt: "Een kat op een high-wheeler fiets onderweg naar wie weet waar",
+    },
+    { src: cat6, alt: "Drie chinese katten" },
+    { src: cat7, alt: "Een kat die net heeft verloren met minesweeper" },
+    {
+        src: cat8,
+        alt: "Een kat die door een herkenningsoftware wordt geidentificeerd als een hond",
+    },
+    { src: cat9, alt: "Een kat op de lange manier" },
+    { src: cat10, alt: "Een kat hij heeft nog niet ontbeten" },
+];
+---
+
+<!-- Below is your "component template." It's just HTML, but with
+    some magic sprinkled in to help you build great templates. -->
+<html>
+    <body>
+        <h1>Mijn zonen</h1>
+    </body>
+    <div class="">
+        <ul class="image-section">
+            {cats.map(({ src, alt }) => (
+                <li>
+                    <Image class="cat" src={src} alt={alt} />
+                    <div>
+                        <p>{alt}</p>
+                    </div>
+                </li>
+            ))}
+        </ul>
+    </div>
+</html>
+
+<style>
+    h1 {
+        color: orange;
+    }
+
+    /*global sheet*/
+    body {
+        background-image: url("../images/background.jpg");
+    }
+
+    /*page sheet*/
+    .image-section {
+        --text-color: white;
+        --background-color: black;
+
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1em;
+
+        li {
+            list-style: none;
+        }
+
+        p {
+            justify-self: center;
+            font-size: 0.5em;
+            padding: 0.5em 1em;
+            color: var(--text-color);
+            background: var(--background-color);
+        }
+    }
+
+    .cat {
+        width: 15em;
+        height: 20em;
+        object-fit: cover;
+        border-style: inset;
+        border-width: 1em;
+    }
+</style>
